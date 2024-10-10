@@ -2,9 +2,20 @@ const express = require('express')
 const mongoose = require('mongoose')
 const  productRoute  = require('./routes/product.route')
 const app = express()
+const cors = require('cors')
+const userRoute = require('./routes/user.route')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 require('dotenv').config()
+
+// all origin
+app.use(cors())
+
+// specific frontend 
+// const corsOption = {
+//     origin: ['htpp://localhost:5173'],
+//     optionsSuccessStatus: 200
+// }
 
 const URI = process.env.DATABASE_URI
 
@@ -13,12 +24,13 @@ mongoose.connect(URI)
     console.log("Connected to MongoDB")
 })
 .catch((err) =>{
-    console.log("Error connecting to MongoDB")
+    console.log(err)
 })
 
 
 
 app.use('/product', productRoute)
+app.use('/account', userRoute)
 
 app.get('/', (req, res) =>{
     res.send('Hello World')
