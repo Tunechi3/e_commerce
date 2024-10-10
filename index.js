@@ -16,6 +16,7 @@ app.use(cors())
 //     origin: ['htpp://localhost:5173'],
 //     optionsSuccessStatus: 200
 // }
+//app.use(cors(corsOption))
 
 const URI = process.env.DATABASE_URI
 
