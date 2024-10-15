@@ -21,6 +21,19 @@ UserSchema.pre('save', function (next){
     })
 })
 
+UserSchema.methods.validatePassword = function (password, callback) {
+    bcrypt.compare(password, this.password, (err, isMatch)=>{
+        if(!err) {
+            callback(err, isMatch)
+        }
+        else{
+            console.log('Password could not be compared');
+            next()
+        }
+    })
+}
+
+
 const UserModel = mongoose.model('user_collections', UserSchema)
 
 module.exports = { UserModel }
