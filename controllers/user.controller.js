@@ -34,7 +34,7 @@ const registerUser = (req, res) =>{
                 console.log('Email sent:' + info.response);   
             }
         })
-        res.send({status:true, data})
+        res.send({status:true, message: 'Registration Successful', data})
     })
     .catch((err) =>{
         res.send({status:false, message: "unable to save"})
@@ -49,7 +49,7 @@ const loginUser = (req, res) =>{
         if (data){
             data.validatePassword(password, (err, isMatch)=>{
                 if(isMatch){
-                    res.send({status:true, message: data})
+                    res.send({status:true, message: 'login successfully', data})
                 }
                 else{
                     res.send({status:false, message: 'Invalid Password'})
