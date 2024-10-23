@@ -34,6 +34,7 @@ UserSchema.methods.validatePassword = function (password, callback) {
 }
 
 
+
 const UserModel = mongoose.model('user_collections', UserSchema)
 
 module.exports = { UserModel }
